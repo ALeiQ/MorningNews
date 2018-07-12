@@ -7,6 +7,15 @@ from email.header import Header
 from email.mime.text import MIMEText
 from email.utils import formataddr
 
+import logging
+
+
+logging.basicConfig(filename='LOG/'+__name__+'.log',
+                    format='[%(asctime)s-%(filename)s-%(levelname)s: %(message)s]',
+                    level = logging.DEBUG,
+                    filemode='a',
+                    datefmt='%Y-%m-%d %I:%M:%S %p')
+
 
 # 发件人和收件人
 sender = '422206217@qq.com'
@@ -38,8 +47,8 @@ class send_email(object):
             smtp=smtplib.SMTP_SSL("smtp.qq.com", 465)
             smtp.login(username, password)
             smtp.sendmail(sender, self.receiver, message.as_string())
-            print("发送邮件成功！！！")
-            print("发件人：", message['From'], "收件人：", message['To'])
+            logging.info("发送邮件成功！！！")
+            logging.info("发件人："+ message['From'] + "收件人：" + message['To'])
             smtp.quit()
         except smtplib.SMTPException:
-            print("发送邮件失败！！！")
+            logging.error("发送邮件失败！！！")

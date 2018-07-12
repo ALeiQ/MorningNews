@@ -11,13 +11,19 @@ import time
 from urllib import request
 from sendEmail import send_email
 import re
+import logging
 
 
+logging.basicConfig(filename='LOG/'+__name__+'.log',
+                    format='[%(asctime)s-%(filename)s-%(levelname)s: %(message)s]',
+                    level = logging.DEBUG,
+                    filemode='a',
+                    datefmt='%Y-%m-%d %I:%M:%S %p')
 main_web = 'http://www.pmtown.com/archives/category/%E6%97%A9%E6%8A%A5'
 
 
 def get_morning():
-    print('Start catching......')
+    logging.info('Start catching......')
     receive_emails = []
 
     with open('receive_emails', 'r') as f:
@@ -30,15 +36,16 @@ def get_morning():
     items = get_items(web_html)
     link_dates = get_link_dates(items)
 
-    new_link = link_dates[1]
+    new_link = link_dates[0]
     if '小时' in new_link.date:
         new_html = get_html(new_link.url)
         title, message = get_message(new_html)
         em = send_email(title, message, receive_emails)
         em.do_send()
+        logging.info('早报抓取成功 time:', time.asctime(time.localtime(time.time())))
         return True
     else:
-        print('当日无早报 time:', time.asctime(time.localtime(time.time())))
+        logging.warning('当日无早报 time:', time.asctime(time.localtime(time.time())))
         return False
 
 
@@ -77,7 +84,7 @@ def get_link_dates(items):
             link_dates.append(link_date(page.findall(item)[0],
                               page_date.findall(item)[0]))
     except Exception as ex:
-        print(ex)
+        logging.error('网页数据解析异常', ex)
 
     return link_dates
 
