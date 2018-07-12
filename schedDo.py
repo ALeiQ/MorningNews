@@ -14,7 +14,8 @@ counter = 0
 
 
 def main():
-    scd.enterabs(each_day_time(8, 20, 0, False), 1, echo_test_msg, ())
+    scd.enter(0, 1, echo_test_msg, ())
+    #scd.enterabs(each_day_time(8, 20, 0, False), 1, echo_test_msg, ())
     scd.run()
 
 
@@ -40,7 +41,8 @@ def circle_catch():
     if getMorning.get_morning() or counter == 12:
         counter = 0
     else:
-        scd.enter(10*60, 0, circle_catch, ())
+        scd.enter(1, 0, circle_catch, ())
+        #scd.enter(10*60, 0, circle_catch, ())
 
 
 

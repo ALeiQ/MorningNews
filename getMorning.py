@@ -17,6 +17,7 @@ main_web = 'http://www.pmtown.com/archives/category/%E6%97%A9%E6%8A%A5'
 
 
 def get_morning():
+    print('Start catching......')
     receive_emails = []
 
     with open('receive_emails', 'r') as f:
