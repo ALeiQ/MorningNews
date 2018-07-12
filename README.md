@@ -1,1 +1,1 @@
-# getMorningNews
+# MorningNews
