@@ -10,11 +10,10 @@ from email.utils import formataddr
 import logging
 
 
-logging.basicConfig(filename='LOG/'+__name__+'.log',
-                    format='[%(asctime)s-%(filename)s-%(levelname)s: %(message)s]',
-                    level = logging.DEBUG,
-                    filemode='a',
-                    datefmt='%Y-%m-%d %I:%M:%S %p')
+#logging.basicConfig(filename='LOG/'+__name__+'.log',
+#                    format='[%(asctime)s-%(filename)s-%(levelname)s: %(message)s]',
+#                    level = logging.DEBUG,
+#                    filemode='a')
 
 
 # 发件人和收件人
@@ -48,7 +47,7 @@ class send_email(object):
             smtp.login(username, password)
             smtp.sendmail(sender, self.receiver, message.as_string())
             logging.info("发送邮件成功！！！")
-            logging.info("发件人："+ message['From'] + "收件人：" + message['To'])
+            logging.info("发件人：" + message['From'] + "收件人：" + message['To'])
             smtp.quit()
         except smtplib.SMTPException:
             logging.error("发送邮件失败！！！")

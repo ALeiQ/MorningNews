@@ -9,6 +9,14 @@ __author__ = 'Haso'
 import getMorning
 import sched, time
 
+import logging
+
+
+logging.basicConfig(filename='LOG/logging.log',
+                    format='[%(asctime)s-%(filename)s-%(levelname)s: %(message)s]',
+                    level = logging.DEBUG,
+                    filemode='a')
+
 scd = sched.scheduler(time.time, time.sleep)
 counter = 0
 
@@ -42,6 +50,7 @@ def circle_catch():
     if getMorning.get_morning() or counter == 12:
     #if counter == 12:
         counter = 0
+        logging.warning('两小时仍未抓到，当日无早报！！')
     else:
         #scd.enter(1, 0, circle_catch, ())
         scd.enter(10*60, 0, circle_catch, ())
