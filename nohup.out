@@ -22,3 +22,13 @@ Traceback (most recent call last):
   File "/home/MorningNews/getMorning.py", line 18, in <module>
     logging_email.basicConfig(filename='LOG/'+__name__+'.log',
 AttributeError: 'RootLogger' object has no attribute 'basicConfig'
+Traceback (most recent call last):
+  File "schedDo.py", line 18, in <module>
+    filemode='a')
+  File "/usr/local/python3/lib/python3.6/logging/__init__.py", line 1776, in basicConfig
+    h = FileHandler(filename, mode)
+  File "/usr/local/python3/lib/python3.6/logging/__init__.py", line 1025, in __init__
+    StreamHandler.__init__(self, self._open())
+  File "/usr/local/python3/lib/python3.6/logging/__init__.py", line 1054, in _open
+    return open(self.baseFilename, self.mode, encoding=self.encoding)
+FileNotFoundError: [Errno 2] No such file or directory: '/home/MorningNews/LOG/logging.log'

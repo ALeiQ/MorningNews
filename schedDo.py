@@ -47,10 +47,11 @@ def circle_catch():
     global counter
     counter += 1
     # 每隔10分钟抓取一次，超过12次则取消
-    if getMorning.get_morning() or counter == 12:
-    #if counter == 12:
+    if getMorning.get_morning():
         counter = 0
+    elif counter == 12:
         logging.warning('两小时仍未抓到，当日无早报！！')
+        counter = 0
     else:
         #scd.enter(1, 0, circle_catch, ())
         scd.enter(10*60, 0, circle_catch, ())

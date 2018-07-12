@@ -43,10 +43,10 @@ def get_morning():
         title, message = get_message(new_html)
         em = send_email(title, message, receive_emails)
         em.do_send()
-        logging.info('早报任务执行完成 time: ' + time.asctime(time.localtime(time.time())))
+        logging.info('早报任务执行完成')
         return True
     else:
-        logging.warning('当日无早报 time: ' + time.asctime(time.localtime(time.time())))
+        logging.warning('未抓取到早报，10分钟后重试')
         return False
 
 
