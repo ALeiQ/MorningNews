@@ -38,7 +38,7 @@ def get_morning():
     link_dates = get_link_dates(items)
 
     new_link = link_dates[0]
-    if '小时' in new_link.date:
+    if '分钟' in new_link.date:
         new_html = get_html(new_link.url)
         title, message = get_message(new_html)
         em = send_email(title, message, receive_emails)
