@@ -1,4 +1,4 @@
-/LOG/
-/__pycache__/
-/venv/
-/.idea/
+LOG/
+__pycache__/
+venv/
+.idea/
