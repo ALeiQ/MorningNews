@@ -58,4 +58,5 @@ def circle_catch():
 
 
 
-main()
+if __name__ == '__main__':
+    main()

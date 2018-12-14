@@ -23,7 +23,7 @@ import logging
 main_web = 'http://www.pmtown.com/archives/category/%E6%97%A9%E6%8A%A5'
 
 
-def get_morning():
+def get_morning(type = '分钟'):
     logging.info('Start catching......')
     receive_emails = []
 
@@ -38,7 +38,7 @@ def get_morning():
     link_dates = get_link_dates(items)
 
     new_link = link_dates[0]
-    if '分钟' in new_link.date:
+    if type in new_link.date:
         new_html = get_html(new_link.url)
         title, message = get_message(new_html)
         em = send_email(title, message, receive_emails)
@@ -122,5 +122,6 @@ class link_date(object):
     def write_console(self):
         print(self.link, self.date)
 
+if __name__ == '__main__':
+    get_morning('小时')
 
-#main()
